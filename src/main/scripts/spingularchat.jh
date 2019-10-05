@@ -1,0 +1,96 @@
+
+entity ChatUser {
+	creationDate Instant required,
+	bannedUser Boolean
+}
+
+entity ChatRoom {
+	creationDate Instant required,
+	roomName String minlength(2) maxlength(50) required,
+    roomDescription String minlength(2) maxlength(250),
+    privateRoom Boolean,
+    image ImageBlob
+}
+
+entity ChatRoomAllowedUser {
+	creationDate Instant required,
+	bannedUser Boolean,
+    bannedDate Instant
+}
+
+entity ChatMessage {
+	messageSentAt String required,
+    message String maxlength(65000) required,
+    isReceived Boolean,
+    isDelivered Boolean
+}
+
+entity ChatOffensiveMessage {
+	creationDate Instant required,
+    isOffensive Boolean
+}
+
+entity ChatNotification {
+	creationDate Instant required,
+    chatNotificationReason ChatNotificationReason
+}
+
+entity ChatInvitation {
+	creationDate Instant,
+	acceptance Boolean,
+	denial Boolean,
+	acceptanceDenialDate Instant
+}
+
+entity ChatPhoto {
+	creationDate Instant required,
+	image ImageBlob
+}
+
+enum ChatNotificationReason {
+	INVITATION, NEW_MESSAGE, OFFENSIVE_MESSAGE, INVITATION_ACCEPTED, INVITATION_DENIED, CRAU_JOINED, CRAU_LEAVE
+}
+
+relationship OneToOne {
+    ChatUser{user(id)} to User{chatUser(id)}
+    ChatUser{chatPhoto(id)} to ChatPhoto{chatUser(id)}
+}
+
+relationship ManyToMany {
+	ChatNotification{chatInvitation (id)} to ChatInvitation {chatNotification(id)}
+}
+
+relationship OneToMany {
+	ChatUser{chatRoom(id)} to ChatRoom{chatUser(id)}
+    ChatUser{sender(id)} to ChatInvitation{sender(id)}
+    ChatUser{receiver(id)} to ChatInvitation{receiver(id)}
+    ChatRoom{chatMessage(id)} to ChatMessage{chatRoom(id)}
+    ChatRoom{chatRoomAllowedUser(id)} to ChatRoomAllowedUser{chatRoom(id)}
+    ChatRoom{chatNotification(id)} to ChatNotification{chatRoom(id)}
+    ChatRoom{chatInvitation(id)} to ChatInvitation{chatRoom(id)}
+	ChatUser{chatMessage(id)} to ChatMessage{chatUser(id)}
+	ChatUser{chatRoomAllowedUser(id)} to ChatRoomAllowedUser{chatUser(id)}
+    ChatUser{chatOffensiveMessage(id)} to ChatOffensiveMessage{chatUser(id)}
+    ChatMessage{chatNotification(id)} to ChatNotification{chatMessage(id)}
+    ChatMessage{chatOffensiveMessage(id)} to ChatOffensiveMessage{chatMessage(id)}
+}
+
+relationship ManyToOne {
+	ChatNotification{chatUser(id)} to ChatUser{chatNotification(id)}
+}
+
+// Set pagination options
+// paginate ChatMessage with infinite-scroll
+paginate all with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl // except , 
+
+// FILTERING:
+filter *
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

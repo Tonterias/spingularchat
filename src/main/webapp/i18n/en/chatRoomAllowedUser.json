@@ -1,0 +1,26 @@
+{
+  "spingularchatApp": {
+    "chatRoomAllowedUser": {
+      "home": {
+        "title": "Chat Room Allowed Users",
+        "createLabel": "Create a new Chat Room Allowed User",
+        "createOrEditLabel": "Create or edit a Chat Room Allowed User",
+        "notFound": "No Chat Room Allowed Users found"
+      },
+      "created": "A new Chat Room Allowed User is created with identifier {{ param }}",
+      "updated": "A Chat Room Allowed User is updated with identifier {{ param }}",
+      "deleted": "A Chat Room Allowed User is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Chat Room Allowed User {{ id }}?"
+      },
+      "detail": {
+        "title": "Chat Room Allowed User"
+      },
+      "creationDate": "Creation Date",
+      "bannedUser": "Banned User",
+      "bannedDate": "Banned Date",
+      "chatRoom": "Chat Room",
+      "chatUser": "Chat User"
+    }
+  }
+}

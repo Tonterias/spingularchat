@@ -1,0 +1,25 @@
+{
+  "spingularchatApp": {
+    "chatOffensiveMessage": {
+      "home": {
+        "title": "Chat Offensive Messages",
+        "createLabel": "Crear nuevo Chat Offensive Message",
+        "createOrEditLabel": "Crear o editar Chat Offensive Message",
+        "notFound": "No Chat Offensive Messages found"
+      },
+      "created": "Un nuevo Chat Offensive Message ha sido creado con el identificador {{ param }}",
+      "updated": "Un Chat Offensive Message ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Chat Offensive Message ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Chat Offensive Message {{ id }}?"
+      },
+      "detail": {
+        "title": "Chat Offensive Message"
+      },
+      "creationDate": "Creation Date",
+      "isOffensive": "Is Offensive",
+      "chatUser": "Chat User",
+      "chatMessage": "Chat Message"
+    }
+  }
+}

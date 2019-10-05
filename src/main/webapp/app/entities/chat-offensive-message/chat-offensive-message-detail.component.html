@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="chatOffensiveMessage">
+            <h2><span jhiTranslate="spingularchatApp.chatOffensiveMessage.detail.title">Chat Offensive Message</span> {{chatOffensiveMessage.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="spingularchatApp.chatOffensiveMessage.creationDate">Creation Date</span></dt>
+                <dd>
+                    <span>{{chatOffensiveMessage.creationDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatOffensiveMessage.isOffensive">Is Offensive</span></dt>
+                <dd>
+                    <span>{{chatOffensiveMessage.isOffensive}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatOffensiveMessage.chatUser">Chat User</span></dt>
+                <dd>
+                    <div *ngIf="chatOffensiveMessage.chatUserId">
+                        <a [routerLink]="['/chat-user', chatOffensiveMessage.chatUserId, 'view']">{{chatOffensiveMessage.chatUserId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatOffensiveMessage.chatMessage">Chat Message</span></dt>
+                <dd>
+                    <div *ngIf="chatOffensiveMessage.chatMessageId">
+                        <a [routerLink]="['/chat-message', chatOffensiveMessage.chatMessageId, 'view']">{{chatOffensiveMessage.chatMessageId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/chat-offensive-message', chatOffensiveMessage.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

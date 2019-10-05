@@ -1,0 +1,29 @@
+{
+  "spingularchatApp": {
+    "chatInvitation": {
+      "home": {
+        "title": "Chat Invitations",
+        "createLabel": "Crear nuevo Chat Invitation",
+        "createOrEditLabel": "Crear o editar Chat Invitation",
+        "notFound": "No Chat Invitations found"
+      },
+      "created": "Un nuevo Chat Invitation ha sido creado con el identificador {{ param }}",
+      "updated": "Un Chat Invitation ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Chat Invitation ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Chat Invitation {{ id }}?"
+      },
+      "detail": {
+        "title": "Chat Invitation"
+      },
+      "creationDate": "Creation Date",
+      "acceptance": "Acceptance",
+      "denial": "Denial",
+      "acceptanceDenialDate": "Acceptance Denial Date",
+      "sender": "Sender",
+      "receiver": "Receiver",
+      "chatRoom": "Chat Room",
+      "chatNotification": "Chat Notification"
+    }
+  }
+}

@@ -1,0 +1,79 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="spingularchatApp.chatOffensiveMessage.home.title">Chat Offensive Messages</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-chat-offensive-message" [routerLink]="['/chat-offensive-message/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="spingularchatApp.chatOffensiveMessage.home.createLabel">
+            Create a new Chat Offensive Message
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="chatOffensiveMessages?.length === 0">
+        <span jhiTranslate="spingularchatApp.chatOffensiveMessage.home.notFound">No chatOffensiveMessages found</span>
+    </div>
+    <div class="table-responsive" *ngIf="chatOffensiveMessages?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="creationDate"><span jhiTranslate="spingularchatApp.chatOffensiveMessage.creationDate">Creation Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="isOffensive"><span jhiTranslate="spingularchatApp.chatOffensiveMessage.isOffensive">Is Offensive</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="chatUserId"><span jhiTranslate="spingularchatApp.chatOffensiveMessage.chatUser">Chat User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="chatMessageId"><span jhiTranslate="spingularchatApp.chatOffensiveMessage.chatMessage">Chat Message</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let chatOffensiveMessage of chatOffensiveMessages ;trackBy: trackId">
+                <td><a [routerLink]="['/chat-offensive-message', chatOffensiveMessage.id, 'view' ]">{{chatOffensiveMessage.id}}</a></td>
+                <td>{{chatOffensiveMessage.creationDate | date:'medium'}}</td>
+                <td>{{chatOffensiveMessage.isOffensive}}</td>
+                <td>
+                    <div *ngIf="chatOffensiveMessage.chatUserId">
+                        <a [routerLink]="['/chat-user', chatOffensiveMessage.chatUserId , 'view' ]" >{{chatOffensiveMessage.chatUserId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="chatOffensiveMessage.chatMessageId">
+                        <a [routerLink]="['/chat-message', chatOffensiveMessage.chatMessageId , 'view' ]" >{{chatOffensiveMessage.chatMessageId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/chat-offensive-message', chatOffensiveMessage.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/chat-offensive-message', chatOffensiveMessage.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/chat-offensive-message', { outlets: { popup: chatOffensiveMessage.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="chatOffensiveMessages?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

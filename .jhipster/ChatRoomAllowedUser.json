@@ -1,0 +1,45 @@
+{
+    "name": "ChatRoomAllowedUser",
+    "fields": [
+        {
+            "fieldName": "creationDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "bannedUser",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "bannedDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chatRoom",
+            "otherEntityRelationshipName": "chatRoomAllowedUser",
+            "relationshipName": "chatRoom",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chatUser",
+            "otherEntityRelationshipName": "chatRoomAllowedUser",
+            "relationshipName": "chatUser",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191005101711",
+    "entityTableName": "chat_room_allowed_user",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

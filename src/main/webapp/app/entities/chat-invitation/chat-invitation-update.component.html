@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-chat-invitation-heading" jhiTranslate="spingularchatApp.chatInvitation.home.createOrEditLabel">Create or edit a Chat Invitation</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="spingularchatApp.chatInvitation.creationDate" for="field_creationDate">Creation Date</label>
+                    <div class="d-flex">
+                        <input id="field_creationDate" type="datetime-local" class="form-control" name="creationDate" formControlName="creationDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="spingularchatApp.chatInvitation.acceptance" for="field_acceptance">Acceptance</label>
+                    <input type="checkbox" class="form-control" name="acceptance" id="field_acceptance"
+                           formControlName="acceptance"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="spingularchatApp.chatInvitation.denial" for="field_denial">Denial</label>
+                    <input type="checkbox" class="form-control" name="denial" id="field_denial"
+                           formControlName="denial"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="spingularchatApp.chatInvitation.acceptanceDenialDate" for="field_acceptanceDenialDate">Acceptance Denial Date</label>
+                    <div class="d-flex">
+                        <input id="field_acceptanceDenialDate" type="datetime-local" class="form-control" name="acceptanceDenialDate" formControlName="acceptanceDenialDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="spingularchatApp.chatInvitation.sender" for="field_sender">Sender</label>
+                    <select class="form-control" id="field_sender" name="sender" formControlName="senderId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="chatUserOption.id" *ngFor="let chatUserOption of chatusers; trackBy: trackChatUserById">{{chatUserOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="spingularchatApp.chatInvitation.receiver" for="field_receiver">Receiver</label>
+                    <select class="form-control" id="field_receiver" name="receiver" formControlName="receiverId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="chatUserOption.id" *ngFor="let chatUserOption of chatusers; trackBy: trackChatUserById">{{chatUserOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="spingularchatApp.chatInvitation.chatRoom" for="field_chatRoom">Chat Room</label>
+                    <select class="form-control" id="field_chatRoom" name="chatRoom" formControlName="chatRoomId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="chatRoomOption.id" *ngFor="let chatRoomOption of chatrooms; trackBy: trackChatRoomById">{{chatRoomOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

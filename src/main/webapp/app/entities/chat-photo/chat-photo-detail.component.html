@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="chatPhoto">
+            <h2><span jhiTranslate="spingularchatApp.chatPhoto.detail.title">Chat Photo</span> {{chatPhoto.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="spingularchatApp.chatPhoto.creationDate">Creation Date</span></dt>
+                <dd>
+                    <span>{{chatPhoto.creationDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatPhoto.image">Image</span></dt>
+                <dd>
+                    <div *ngIf="chatPhoto.image">
+                        <a (click)="openFile(chatPhoto.imageContentType, chatPhoto.image)">
+                            <img [src]="'data:' + chatPhoto.imageContentType + ';base64,' + chatPhoto.image" style="max-width: 100%;" alt="chatPhoto image"/>
+                        </a>
+                        {{chatPhoto.imageContentType}}, {{byteSize(chatPhoto.image)}}
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/chat-photo', chatPhoto.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

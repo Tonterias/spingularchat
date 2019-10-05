@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-chat-notification-heading" jhiTranslate="spingularchatApp.chatNotification.home.createOrEditLabel">Create or edit a Chat Notification</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="spingularchatApp.chatNotification.creationDate" for="field_creationDate">Creation Date</label>
+                    <div class="d-flex">
+                        <input id="field_creationDate" type="datetime-local" class="form-control" name="creationDate" formControlName="creationDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('creationDate').invalid && (editForm.get('creationDate').dirty || editForm.get('creationDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('creationDate').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('creationDate').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="spingularchatApp.chatNotification.chatNotificationReason" for="field_chatNotificationReason">Chat Notification Reason</label>
+                    <select class="form-control" name="chatNotificationReason" formControlName="chatNotificationReason" id="field_chatNotificationReason">
+                        <option value="INVITATION">{{'spingularchatApp.ChatNotificationReason.INVITATION' | translate}}</option>
+                        <option value="NEW_MESSAGE">{{'spingularchatApp.ChatNotificationReason.NEW_MESSAGE' | translate}}</option>
+                        <option value="OFFENSIVE_MESSAGE">{{'spingularchatApp.ChatNotificationReason.OFFENSIVE_MESSAGE' | translate}}</option>
+                        <option value="INVITATION_ACCEPTED">{{'spingularchatApp.ChatNotificationReason.INVITATION_ACCEPTED' | translate}}</option>
+                        <option value="INVITATION_DENIED">{{'spingularchatApp.ChatNotificationReason.INVITATION_DENIED' | translate}}</option>
+                        <option value="CRAU_JOINED">{{'spingularchatApp.ChatNotificationReason.CRAU_JOINED' | translate}}</option>
+                        <option value="CRAU_LEAVE">{{'spingularchatApp.ChatNotificationReason.CRAU_LEAVE' | translate}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="spingularchatApp.chatNotification.chatUser" for="field_chatUser">Chat User</label>
+                    <select class="form-control" id="field_chatUser" name="chatUser" formControlName="chatUserId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="chatUserOption.id" *ngFor="let chatUserOption of chatusers; trackBy: trackChatUserById">{{chatUserOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="spingularchatApp.chatNotification.chatInvitation" for="field_chatInvitations">Chat Invitation</label>
+                    <select class="form-control" id="field_chatInvitations" multiple name="chatInvitations" formControlName="chatInvitations">
+                        <option [ngValue]="getSelected(editForm.get('chatInvitations').value, chatInvitationOption)" *ngFor="let chatInvitationOption of chatinvitations; trackBy: trackChatInvitationById">{{chatInvitationOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="spingularchatApp.chatNotification.chatRoom" for="field_chatRoom">Chat Room</label>
+                    <select class="form-control" id="field_chatRoom" name="chatRoom" formControlName="chatRoomId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="chatRoomOption.id" *ngFor="let chatRoomOption of chatrooms; trackBy: trackChatRoomById">{{chatRoomOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="spingularchatApp.chatNotification.chatMessage" for="field_chatMessage">Chat Message</label>
+                    <select class="form-control" id="field_chatMessage" name="chatMessage" formControlName="chatMessageId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="chatMessageOption.id" *ngFor="let chatMessageOption of chatmessages; trackBy: trackChatMessageById">{{chatMessageOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

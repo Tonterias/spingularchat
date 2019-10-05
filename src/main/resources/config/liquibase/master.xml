@@ -14,6 +14,21 @@
     <property name="uuidType" value="uuid" dbms="h2, postgresql"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191005101709_added_entity_ChatUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191005101710_added_entity_ChatRoom.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191005101711_added_entity_ChatRoomAllowedUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191005101712_added_entity_ChatMessage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191005101713_added_entity_ChatOffensiveMessage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191005101714_added_entity_ChatNotification.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191005101715_added_entity_ChatInvitation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191005101716_added_entity_ChatPhoto.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20191005101709_added_entity_constraints_ChatUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191005101710_added_entity_constraints_ChatRoom.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191005101711_added_entity_constraints_ChatRoomAllowedUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191005101712_added_entity_constraints_ChatMessage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191005101713_added_entity_constraints_ChatOffensiveMessage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191005101714_added_entity_constraints_ChatNotification.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191005101715_added_entity_constraints_ChatInvitation.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

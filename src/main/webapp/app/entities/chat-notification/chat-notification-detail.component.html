@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="chatNotification">
+            <h2><span jhiTranslate="spingularchatApp.chatNotification.detail.title">Chat Notification</span> {{chatNotification.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="spingularchatApp.chatNotification.creationDate">Creation Date</span></dt>
+                <dd>
+                    <span>{{chatNotification.creationDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatNotification.chatNotificationReason">Chat Notification Reason</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'spingularchatApp.ChatNotificationReason.' + chatNotification.chatNotificationReason}}">{{chatNotification.chatNotificationReason}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatNotification.chatUser">Chat User</span></dt>
+                <dd>
+                    <div *ngIf="chatNotification.chatUserId">
+                        <a [routerLink]="['/chat-user', chatNotification.chatUserId, 'view']">{{chatNotification.chatUserId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatNotification.chatInvitation">Chat Invitation</span></dt>
+                <dd>
+                    <span *ngFor="let chatInvitation of chatNotification.chatInvitations; let last = last">
+                        <a [routerLink]="['/chat-invitation', chatInvitation?.id, 'view' ]">{{chatInvitation.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatNotification.chatRoom">Chat Room</span></dt>
+                <dd>
+                    <div *ngIf="chatNotification.chatRoomId">
+                        <a [routerLink]="['/chat-room', chatNotification.chatRoomId, 'view']">{{chatNotification.chatRoomId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatNotification.chatMessage">Chat Message</span></dt>
+                <dd>
+                    <div *ngIf="chatNotification.chatMessageId">
+                        <a [routerLink]="['/chat-message', chatNotification.chatMessageId, 'view']">{{chatNotification.chatMessageId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/chat-notification', chatNotification.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

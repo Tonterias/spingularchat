@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="chatInvitation">
+            <h2><span jhiTranslate="spingularchatApp.chatInvitation.detail.title">Chat Invitation</span> {{chatInvitation.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="spingularchatApp.chatInvitation.creationDate">Creation Date</span></dt>
+                <dd>
+                    <span>{{chatInvitation.creationDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatInvitation.acceptance">Acceptance</span></dt>
+                <dd>
+                    <span>{{chatInvitation.acceptance}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatInvitation.denial">Denial</span></dt>
+                <dd>
+                    <span>{{chatInvitation.denial}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatInvitation.acceptanceDenialDate">Acceptance Denial Date</span></dt>
+                <dd>
+                    <span>{{chatInvitation.acceptanceDenialDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatInvitation.sender">Sender</span></dt>
+                <dd>
+                    <div *ngIf="chatInvitation.senderId">
+                        <a [routerLink]="['/chat-user', chatInvitation.senderId, 'view']">{{chatInvitation.senderId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatInvitation.receiver">Receiver</span></dt>
+                <dd>
+                    <div *ngIf="chatInvitation.receiverId">
+                        <a [routerLink]="['/chat-user', chatInvitation.receiverId, 'view']">{{chatInvitation.receiverId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatInvitation.chatRoom">Chat Room</span></dt>
+                <dd>
+                    <div *ngIf="chatInvitation.chatRoomId">
+                        <a [routerLink]="['/chat-room', chatInvitation.chatRoomId, 'view']">{{chatInvitation.chatRoomId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/chat-invitation', chatInvitation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

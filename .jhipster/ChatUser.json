@@ -1,0 +1,85 @@
+{
+    "name": "ChatUser",
+    "fields": [
+        {
+            "fieldName": "creationDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "bannedUser",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "chatUser",
+            "relationshipName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "chatPhoto",
+            "otherEntityRelationshipName": "chatUser",
+            "relationshipName": "chatPhoto",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "chatRoom",
+            "otherEntityRelationshipName": "chatUser",
+            "relationshipName": "chatRoom"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "chatInvitation",
+            "otherEntityRelationshipName": "sender",
+            "relationshipName": "sender"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "chatInvitation",
+            "otherEntityRelationshipName": "receiver",
+            "relationshipName": "receiver"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "chatMessage",
+            "otherEntityRelationshipName": "chatUser",
+            "relationshipName": "chatMessage"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "chatRoomAllowedUser",
+            "otherEntityRelationshipName": "chatUser",
+            "relationshipName": "chatRoomAllowedUser"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "chatOffensiveMessage",
+            "otherEntityRelationshipName": "chatUser",
+            "relationshipName": "chatOffensiveMessage"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "chatNotification",
+            "otherEntityRelationshipName": "chatUser",
+            "relationshipName": "chatNotification"
+        }
+    ],
+    "changelogDate": "20191005101709",
+    "entityTableName": "chat_user",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

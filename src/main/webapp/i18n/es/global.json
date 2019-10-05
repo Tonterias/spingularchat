@@ -7,6 +7,14 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
+        "chatUser": "Chat User",
+        "chatRoom": "Chat Room",
+        "chatRoomAllowedUser": "Chat Room Allowed User",
+        "chatMessage": "Chat Message",
+        "chatOffensiveMessage": "Chat Offensive Message",
+        "chatNotification": "Chat Notification",
+        "chatInvitation": "Chat Invitation",
+        "chatPhoto": "Chat Photo",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

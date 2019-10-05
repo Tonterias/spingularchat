@@ -1,0 +1,29 @@
+{
+  "spingularchatApp": {
+    "chatMessage": {
+      "home": {
+        "title": "Chat Messages",
+        "createLabel": "Crear nuevo Chat Message",
+        "createOrEditLabel": "Crear o editar Chat Message",
+        "notFound": "No Chat Messages found"
+      },
+      "created": "Un nuevo Chat Message ha sido creado con el identificador {{ param }}",
+      "updated": "Un Chat Message ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Chat Message ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Chat Message {{ id }}?"
+      },
+      "detail": {
+        "title": "Chat Message"
+      },
+      "messageSentAt": "Message Sent At",
+      "message": "Message",
+      "isReceived": "Is Received",
+      "isDelivered": "Is Delivered",
+      "chatNotification": "Chat Notification",
+      "chatOffensiveMessage": "Chat Offensive Message",
+      "chatRoom": "Chat Room",
+      "chatUser": "Chat User"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+    "name": "ChatNotification",
+    "fields": [
+        {
+            "fieldName": "creationDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "chatNotificationReason",
+            "fieldType": "ChatNotificationReason",
+            "fieldValues": "INVITATION,NEW_MESSAGE,OFFENSIVE_MESSAGE,INVITATION_ACCEPTED,INVITATION_DENIED,CRAU_JOINED,CRAU_LEAVE"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chatUser",
+            "otherEntityRelationshipName": "chatNotification",
+            "relationshipName": "chatUser",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "chatInvitation",
+            "otherEntityRelationshipName": "chatNotification",
+            "relationshipName": "chatInvitation",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chatRoom",
+            "otherEntityRelationshipName": "chatNotification",
+            "relationshipName": "chatRoom",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chatMessage",
+            "otherEntityRelationshipName": "chatNotification",
+            "relationshipName": "chatMessage",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191005101714",
+    "entityTableName": "chat_notification",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

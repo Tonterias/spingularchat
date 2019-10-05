@@ -1,0 +1,61 @@
+{
+    "name": "ChatInvitation",
+    "fields": [
+        {
+            "fieldName": "creationDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "acceptance",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "denial",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "acceptanceDenialDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chatUser",
+            "otherEntityRelationshipName": "sender",
+            "relationshipName": "sender",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chatUser",
+            "otherEntityRelationshipName": "receiver",
+            "relationshipName": "receiver",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chatRoom",
+            "otherEntityRelationshipName": "chatInvitation",
+            "relationshipName": "chatRoom",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "chatNotification",
+            "otherEntityRelationshipName": "chatInvitation",
+            "relationshipName": "chatNotification",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20191005101715",
+    "entityTableName": "chat_invitation",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,32 @@
+{
+  "spingularchatApp": {
+    "chatUser": {
+      "home": {
+        "title": "Chat Users",
+        "createLabel": "Crear nuevo Chat User",
+        "createOrEditLabel": "Crear o editar Chat User",
+        "notFound": "No Chat Users found"
+      },
+      "created": "Un nuevo Chat User ha sido creado con el identificador {{ param }}",
+      "updated": "Un Chat User ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Chat User ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Chat User {{ id }}?"
+      },
+      "detail": {
+        "title": "Chat User"
+      },
+      "creationDate": "Creation Date",
+      "bannedUser": "Banned User",
+      "user": "User",
+      "chatPhoto": "Chat Photo",
+      "chatRoom": "Chat Room",
+      "sender": "Sender",
+      "receiver": "Receiver",
+      "chatMessage": "Chat Message",
+      "chatRoomAllowedUser": "Chat Room Allowed User",
+      "chatOffensiveMessage": "Chat Offensive Message",
+      "chatNotification": "Chat Notification"
+    }
+  }
+}

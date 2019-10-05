@@ -1,0 +1,66 @@
+{
+    "name": "ChatMessage",
+    "fields": [
+        {
+            "fieldName": "messageSentAt",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "message",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 65000
+        },
+        {
+            "fieldName": "isReceived",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "isDelivered",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "chatNotification",
+            "otherEntityRelationshipName": "chatMessage",
+            "relationshipName": "chatNotification"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "chatOffensiveMessage",
+            "otherEntityRelationshipName": "chatMessage",
+            "relationshipName": "chatOffensiveMessage"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chatRoom",
+            "otherEntityRelationshipName": "chatMessage",
+            "relationshipName": "chatRoom",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chatUser",
+            "otherEntityRelationshipName": "chatMessage",
+            "relationshipName": "chatUser",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191005101712",
+    "entityTableName": "chat_message",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

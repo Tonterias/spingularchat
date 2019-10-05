@@ -1,0 +1,81 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="spingularchatApp.chatRoomAllowedUser.home.title">Chat Room Allowed Users</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-chat-room-allowed-user" [routerLink]="['/chat-room-allowed-user/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="spingularchatApp.chatRoomAllowedUser.home.createLabel">
+            Create a new Chat Room Allowed User
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="chatRoomAllowedUsers?.length === 0">
+        <span jhiTranslate="spingularchatApp.chatRoomAllowedUser.home.notFound">No chatRoomAllowedUsers found</span>
+    </div>
+    <div class="table-responsive" *ngIf="chatRoomAllowedUsers?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="creationDate"><span jhiTranslate="spingularchatApp.chatRoomAllowedUser.creationDate">Creation Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="bannedUser"><span jhiTranslate="spingularchatApp.chatRoomAllowedUser.bannedUser">Banned User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="bannedDate"><span jhiTranslate="spingularchatApp.chatRoomAllowedUser.bannedDate">Banned Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="chatRoomId"><span jhiTranslate="spingularchatApp.chatRoomAllowedUser.chatRoom">Chat Room</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="chatUserId"><span jhiTranslate="spingularchatApp.chatRoomAllowedUser.chatUser">Chat User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let chatRoomAllowedUser of chatRoomAllowedUsers ;trackBy: trackId">
+                <td><a [routerLink]="['/chat-room-allowed-user', chatRoomAllowedUser.id, 'view' ]">{{chatRoomAllowedUser.id}}</a></td>
+                <td>{{chatRoomAllowedUser.creationDate | date:'medium'}}</td>
+                <td>{{chatRoomAllowedUser.bannedUser}}</td>
+                <td>{{chatRoomAllowedUser.bannedDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="chatRoomAllowedUser.chatRoomId">
+                        <a [routerLink]="['/chat-room', chatRoomAllowedUser.chatRoomId , 'view' ]" >{{chatRoomAllowedUser.chatRoomId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="chatRoomAllowedUser.chatUserId">
+                        <a [routerLink]="['/chat-user', chatRoomAllowedUser.chatUserId , 'view' ]" >{{chatRoomAllowedUser.chatUserId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/chat-room-allowed-user', chatRoomAllowedUser.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/chat-room-allowed-user', chatRoomAllowedUser.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/chat-room-allowed-user', { outlets: { popup: chatRoomAllowedUser.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="chatRoomAllowedUsers?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

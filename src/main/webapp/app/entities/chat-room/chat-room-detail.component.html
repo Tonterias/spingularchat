@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="chatRoom">
+            <h2><span jhiTranslate="spingularchatApp.chatRoom.detail.title">Chat Room</span> {{chatRoom.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="spingularchatApp.chatRoom.creationDate">Creation Date</span></dt>
+                <dd>
+                    <span>{{chatRoom.creationDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatRoom.roomName">Room Name</span></dt>
+                <dd>
+                    <span>{{chatRoom.roomName}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatRoom.roomDescription">Room Description</span></dt>
+                <dd>
+                    <span>{{chatRoom.roomDescription}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatRoom.privateRoom">Private Room</span></dt>
+                <dd>
+                    <span>{{chatRoom.privateRoom}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatRoom.image">Image</span></dt>
+                <dd>
+                    <div *ngIf="chatRoom.image">
+                        <a (click)="openFile(chatRoom.imageContentType, chatRoom.image)">
+                            <img [src]="'data:' + chatRoom.imageContentType + ';base64,' + chatRoom.image" style="max-width: 100%;" alt="chatRoom image"/>
+                        </a>
+                        {{chatRoom.imageContentType}}, {{byteSize(chatRoom.image)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatRoom.chatUser">Chat User</span></dt>
+                <dd>
+                    <div *ngIf="chatRoom.chatUserId">
+                        <a [routerLink]="['/chat-user', chatRoom.chatUserId, 'view']">{{chatRoom.chatUserId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/chat-room', chatRoom.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

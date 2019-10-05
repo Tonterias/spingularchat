@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="chatUser">
+            <h2><span jhiTranslate="spingularchatApp.chatUser.detail.title">Chat User</span> {{chatUser.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="spingularchatApp.chatUser.creationDate">Creation Date</span></dt>
+                <dd>
+                    <span>{{chatUser.creationDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatUser.bannedUser">Banned User</span></dt>
+                <dd>
+                    <span>{{chatUser.bannedUser}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatUser.user">User</span></dt>
+                <dd>
+                    {{chatUser.userId}}
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatUser.chatPhoto">Chat Photo</span></dt>
+                <dd>
+                    <div *ngIf="chatUser.chatPhotoId">
+                        <a [routerLink]="['/chat-photo', chatUser.chatPhotoId, 'view']">{{chatUser.chatPhotoId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/chat-user', chatUser.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

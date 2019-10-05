@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="chatMessage">
+            <h2><span jhiTranslate="spingularchatApp.chatMessage.detail.title">Chat Message</span> {{chatMessage.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="spingularchatApp.chatMessage.messageSentAt">Message Sent At</span></dt>
+                <dd>
+                    <span>{{chatMessage.messageSentAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatMessage.message">Message</span></dt>
+                <dd>
+                    <span>{{chatMessage.message}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatMessage.isReceived">Is Received</span></dt>
+                <dd>
+                    <span>{{chatMessage.isReceived}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatMessage.isDelivered">Is Delivered</span></dt>
+                <dd>
+                    <span>{{chatMessage.isDelivered}}</span>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatMessage.chatRoom">Chat Room</span></dt>
+                <dd>
+                    <div *ngIf="chatMessage.chatRoomId">
+                        <a [routerLink]="['/chat-room', chatMessage.chatRoomId, 'view']">{{chatMessage.chatRoomId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="spingularchatApp.chatMessage.chatUser">Chat User</span></dt>
+                <dd>
+                    <div *ngIf="chatMessage.chatUserId">
+                        <a [routerLink]="['/chat-user', chatMessage.chatUserId, 'view']">{{chatMessage.chatUserId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/chat-message', chatMessage.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

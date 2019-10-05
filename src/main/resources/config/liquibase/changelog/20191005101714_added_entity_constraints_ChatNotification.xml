@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ChatNotification.
+    -->
+    <changeSet id="20191005101714-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="chat_user_id"
+                                 baseTableName="chat_notification"
+                                 constraintName="fk_chat_notification_chat_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="chat_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="chat_notification_id"
+                                 baseTableName="chat_notification_chat_invitation"
+                                 constraintName="fk_chat_notification_chat_invitation_chat_notification_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="chat_notification"/>
+
+        <addForeignKeyConstraint baseColumnNames="chat_invitation_id"
+                                 baseTableName="chat_notification_chat_invitation"
+                                 constraintName="fk_chat_notification_chat_invitation_chat_invitation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="chat_invitation"/>
+        
+        <addForeignKeyConstraint baseColumnNames="chat_room_id"
+                                 baseTableName="chat_notification"
+                                 constraintName="fk_chat_notification_chat_room_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="chat_room"/>
+
+        <addForeignKeyConstraint baseColumnNames="chat_message_id"
+                                 baseTableName="chat_notification"
+                                 constraintName="fk_chat_notification_chat_message_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="chat_message"/>
+
+    </changeSet>
+</databaseChangeLog>
